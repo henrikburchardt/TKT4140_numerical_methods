@@ -66,7 +66,7 @@ def fib_array(n):
     f1 = 0
     f2 = 1
     list1 = [0, 1]
-    t =     np.array(list1)
+    t = np.array(list1)
     for i in range(n - 2):
         temp = f2
         f1 = f2
