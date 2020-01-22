@@ -35,7 +35,7 @@ def fib(n):
     f2 = 1
     print(f1, f2, end=' ')
     for i in range(n-2):
-        temp = f2
+        temp = f1
         f1 = f2
         f2 = f2 + temp
         print(f2, end=' ')
