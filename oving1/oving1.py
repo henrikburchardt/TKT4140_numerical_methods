@@ -20,6 +20,7 @@ B = np.array([[2, 4, 6], [8, 10, 12], [14, 16, 18]])
 
 print('a+b=', a+b)
 print('a*b=', a*b)
+print('a prikk b', np.dot(a, b))
 print('A@B=', A@B)
 print('A^T=', A.T)
 print('A^-1=', np.linalg.inv(A))
@@ -48,14 +49,14 @@ def plot_sin():
     plt.subplot(211)
     x1 = np.linspace(0, 2*np.pi, 10)
     y1 = np.sin(x1)
-    x2 = np.linspace(0, 2*np.pi, 50)
+    x2 = np.linspace(0, 2*np.pi, 100)
     y2 = np.sin(x2)
     plt.plot(x1, y1, x2, y2)
     p1, p2 = plt.plot(x1, y1, x2, y2)
     plt.xlabel('x')
     plt.ylabel('f(x)')
     plt.title('sin(x) plot')
-    plt.legend((p1, p2,), ('!0 points', '50 points'))
+    plt.legend((p1, p2,), ('10 points', '100 points'))
     plt.show()
 
 
@@ -67,10 +68,10 @@ def fib_array(n):
     f2 = 1
     list1 = [0, 1]
     t = np.array(list1)
-    for i in range(n - 2):
-        temp = f2
+    for i in range(2, n):
+        f3 = f1 + f2
         f1 = f2
-        f2 = f2 + temp
+        f2 = f3
         t = np.append(t,f2)
     plt.figure()
     n = np.linspace(0, n, n)
@@ -81,14 +82,12 @@ def fib_array(n):
     plt.show()
 
 
-
-
-
 if __name__ == '__main__':
     hello_world()
     fib(30)
     plot_sin()
     fib_array(30)
+
 
 
 
