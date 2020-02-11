@@ -12,14 +12,14 @@ def euler(x, y):
     return 1 - 3*x + y + x**2 + x*y
 
 
-h = 0.001
+h = 0.01
 x = np.arange(0, 1.5, h)
-y = np.zeros(len(x))
+y = np.zeros(x.size)
 y[0] = 0
 
-for i in range(1, len(x)):
+for i in range(1, x.size):
 
-    y[i] = y[i-1] + h*(euler(x[i], y[i]))
+    y[i] = y[i-1] + h*(euler(x[i-1], y[i-1]))
 
 
 def newton(x):
@@ -27,9 +27,9 @@ def newton(x):
     return x - x**2 + x**3/3 - x**4/6 + x**5/30 - x**6/45
 
 
-k = np.zeros(len(x))
+k = np.zeros(x.size)
 
-for i in range(1, len(x)):
+for i in range(1, x.size):
     k[i] = newton(x[i])
 
 
