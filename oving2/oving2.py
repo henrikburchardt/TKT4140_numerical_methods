@@ -21,11 +21,6 @@ for i in range(1, len(x)):
 
     y[i] = y[i-1] + h*(euler(x[i], y[i]))
 
-plt.figure()
-plt.plot(x, y)
-plt.legend('Euler')
-plt.show()
-
 
 def newton(x):
 
@@ -36,11 +31,6 @@ k = np.zeros(len(x))
 
 for i in range(1, len(x)):
     k[i] = newton(x[i])
-
-plt.figure()
-plt.plot(x, k)
-plt.legend('Newton')
-plt.show()
 
 
 def analytical(x):
@@ -54,8 +44,12 @@ for i in range(1, len(x)):
     l[i] = analytical(x[i])
 
 plt.figure()
+plt.plot(x, y)
+plt.plot(x, k)
 plt.plot(x, l)
-plt.legend('Analytical')
+plt.legend(['Euler', 'Newton', 'Analytical'])
+plt.xlabel('x')
+plt.ylabel('y')
 plt.show()
 
 
@@ -86,6 +80,9 @@ theta_0 = np.deg2rad(85)
 theta_dot = 0
 t1, theta1 = euler_method(10, 0.01, theta_0, theta_dot)
 plt.plot(t1, theta1)
+plt.xlabel('time')
+plt.ylabel('radians')
+plt.legend('Euler Amp')
 plt.show()
 
 
@@ -129,6 +126,9 @@ theta_dot = 0
 t, theta = heuns_method(10, 0.1, theta_0, theta_dot)
 amplitude(t, theta)
 plt.plot(t, theta)
+plt.legend('Amplitude')
+plt.xlabel('time')
+plt.ylabel('radians')
 plt.show()
 
 
