@@ -112,7 +112,7 @@ s1 = -0.6
 plt.figure()
 grey = '0.75'
 linestyles = [grey, 'r--', 'g--', 'b--', 'y--', 'm--', 'c--']
-plt.plot(x, y_analytic, 'k')
+plt.plot(x[0], y_analytic, 'k')
 
 #Oppgave 2
 
@@ -144,69 +144,6 @@ plt.show()
 plt.interactive(False)
 
 
-#Oppgave 3 a)
-
-N = 8
-# number of unknowns
-x = np.linspace(0, 0.9, N + 2)
-h = 0.9/(N + 1)
-y_analytic = 0.5*(np.log(np.abs(x-1))-np.log(np.abs(x+1))) + 2
-
-x_unknown = x[1:-1]
-
-y_0, y_End = y_analytic[0], y_analytic[-1]
-# boundaries
-
-Y0 = np.linspace(y_0, y_End, N + 2)
-# first value of Y
-
-for n in range(2):
-    Y0Plus = Y0[2:]
-    Y0Minus = Y0[0:-2]
-    d = -0.5*x_unknown*(Y0Plus-Y0Minus)**2
-    d[0] = d[0] - y_0
-    d[-1] = d[-1] - y_End
-    A = scipy.sparse.diags([1, -2, 1], [-1, 0, 1], shape=(N, N), format='csc')
-    Y1 = scipy.sparse.linalg.spsolve(A, d)
-    Y1Full = np.append(y_0, Y1)
-    Y1Full = np.append(Y1Full, y_End)
-    Y0 = Y1Full
-
-
-#Oppgave 3 b)
-
-N = 8
-x = np.linspace(0, 0.9, N + 2)
-h = 0.9/(N + 1)
-y_analytic = 0.5*(np.log(np.abs(x-1))-np.log(np.abs(x+1))) + 2
-x_unknown = x[1:-1]
-y0, yEnd = y_analytic[0], y_analytic[-1]
-Y0 = np.linspace(y0, yEnd, N + 2)
-
-for n in range(2):
-    Y0Plus = Y0[2:]
-    Y0Minus = Y0[0:-2]
-    alpha = Y0Plus - Y0Minus
-    MainDiag = -2*np.ones(N)
-    supDiag = 1 + x_unknown[:-1]*alpha[:-1]
-    subDiag = 1 - x_unknown[1:]*alpha[1:]
-    d = 0.5*x_unknown*(alpha)**2
-    d[0]= d[0] - y0*(1 - x_unknown[0]*alpha[0])
-    d[-1]= d[-1] - yEnd*(1 + x_unknown[-1]*alpha[-1])
-    A = scipy.sparse.diags([subDiag, MainDiag, supDiag], [-1, 0, 1], format='csc')
-    Y1 = scipy.sparse.linalg.spsolve(A, d)
-    Y1Full = np.append(y0, Y1)
-    Y1Full = np.append(Y1Full, yEnd)
-    Y0 = Y1Full
-
-print(len(x), len(Y0), len(Y1Full))
-plt.figure()
-plt.plot(x, y_analytic, 'k')
-plt.plot(x, Y1Full, 'r--')
-plt.xlabel('x')
-plt.ylabel('y')
-plt.legend(['analytic', 'numeric'], frameon=False)
-plt.show()
 
 
 '''''må inn over oppgave 1 for å lage korrekt plott'''''

@@ -1,6 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy as sip
+from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
+from matplotlib.ticker import LinearLocator, FormatStrFormatter
 
 
 def temp_beam(Tleft, Tright, T0, L, deltaT, deltaX, endTime):
@@ -16,8 +19,8 @@ def temp_beam(Tleft, Tright, T0, L, deltaT, deltaX, endTime):
         print("WARNING --> unstable for given parameters")
         return
 
-    T = np.int(endTime / deltaT)  # seting number of iterations
-    X = np.int(L / deltaX + 1)  # seting number of iterations along the beam
+    T = np.int(endTime / deltaT)  # setting number of iterations
+    X = np.int(L / deltaX + 1)  # setting number of iterations along the beam
 
     temp_prev = np.zeros(X, float)  # initial condition is that all the temperatures along the beam is zero
     temp_next = np.zeros(X, float)
